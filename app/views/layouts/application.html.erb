@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FantaCalcio</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.css">
+  </head>
+
+  <body>
+    <nav>
+      <%= render 'layouts/navigation' %>
+    </nav>
+    <main class="main">
+      <%= yield %>
+    </main>
+    <footer class="footer">
+      <%= render 'layouts/footer' %>
+    </footer>
+  </body>
+</html>
