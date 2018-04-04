@@ -41,4 +41,10 @@ RailsAdmin.config do |config|
       field :status
     end
   end
+
+  config.model 'Club' do
+    edit do
+      field :name
+    end
+  end
 end

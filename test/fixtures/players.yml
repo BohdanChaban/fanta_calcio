@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  position: MyString
+  init_price: 1
+  actual_price: 1
+  avatar: MyString
+
+two:
+  name: MyString
+  position: MyString
+  init_price: 1
+  actual_price: 1
+  avatar: MyString

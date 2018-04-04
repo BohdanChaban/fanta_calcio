@@ -57,3 +57,5 @@ gem 'devise'
 gem 'devise-bootstrap-views'
 
 gem 'rails_admin', '~> 1.3'
+
+gem 'rest-client'
