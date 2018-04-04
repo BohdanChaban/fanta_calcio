@@ -1,5 +1,5 @@
 module Clubs
-  class PlayersCreator
+  class PlayersBuilder
     def self.call(club)
       new(club).call
     end
@@ -11,9 +11,7 @@ module Clubs
     end
 
     def call
-      players = html_page.css('table')[0].children[1].children
-
-      players.each do |player|
+      players_css.inject([]) do |memo, player|
         player_info = {
           name: player.children[1].text,
           position: player.children[2].text,
@@ -23,22 +21,25 @@ module Clubs
           club: club
         }
 
-        Player.create(player_info)
+        memo << Player.new(player_info)
+        memo
       end
     end
 
     private
 
-    def url
-      "https://www.fantagazzetta.com/squadre/#{club.name}"
+    def players_css
+      @players_css ||= html_page.css('table')[0].children[1].children
     end
 
     def avatar_url(name)
-      "https://content.fantagazzetta.com/web/campioncini/card/#{name}.jpg"
+      Api::Url.image(name)
     end
 
     def html_page
-      Nokogiri::HTML(RestClient.get(url))
+      Nokogiri::HTML(RestClient.get(
+        Api::Url.team(club.name))
+      )
     end
   end
 end

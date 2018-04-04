@@ -1,5 +1,5 @@
 module Clubs
-  class DataParser
+  class Parser
     POINTS_FOR_WIN = 3
 
     def self.call(name)
@@ -13,8 +13,6 @@ module Clubs
     end
 
     def call
-      stats = html_page.css('div#statistiche div.sqcard div.row')[0].children
-
       {
         games: stats[0].children[0].text.to_i,
         win: stats[1].children[0].text.to_i,
@@ -32,12 +30,19 @@ module Clubs
       win * POINTS_FOR_WIN + draw
     end
 
-    def url
-      "https://www.fantagazzetta.com/squadre/#{name}"
+    def stats
+      raise "Team #{name} not Found" if team_row.empty?
+      team_row[0].children
+    end
+
+    def team_row
+      html_page.css('div#statistiche div.sqcard div.row')
     end
 
     def html_page
-      Nokogiri::HTML(RestClient.get(url))
+      Nokogiri::HTML(
+        RestClient.get(Api::Url.team(name))
+      )
     end
   end
 end

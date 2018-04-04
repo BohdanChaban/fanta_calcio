@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+clubs = YAML.load(IO.read Rails.root.join('spec', 'fixtures', 'clubs.yml'))
+
+clubs.each do |club|
+  Club.create(name: club) unless Club.exists?(name: club)
+end
