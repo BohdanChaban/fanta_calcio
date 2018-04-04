@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :teams, only: [:index, :new, :create]
-  resources :clubs, only: [:index]
+  resources :clubs, only: [:index, :show]
 end
