@@ -5,21 +5,21 @@ class Club < ApplicationRecord
 
   after_create :update_info
   after_create :update_logo
-  after_create :create_players
+  before_create :create_players
 
   private
 
   def update_info
-    params = Clubs::DataParser.call(name)
+    params = Clubs::Parser.call(name)
 
-    self.update(params)
+    update(params)
   end
 
   def update_logo
-    self.update(logo: "https://content.fantagazzetta.com/web/img/team/#{name}.png")
+    update(logo: Api::Url.club_image(name))
   end
 
   def create_players
-    Clubs::PlayersCreator.call(self)
+    self.players = Clubs::PlayersBuilder.call(self)
   end
 end
