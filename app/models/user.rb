@@ -10,8 +10,9 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
 
-  enum status: { newbie: 0,
-                 approved: 1,
-                 admin: 2
+  enum status: {
+    newbie: 0,
+    approved: 1,
+    admin: 2
   }
 end

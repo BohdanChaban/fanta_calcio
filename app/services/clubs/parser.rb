@@ -14,17 +14,21 @@ module Clubs
 
     def call
       {
-        games: stats[0].children[0].text.to_i,
-        win: stats[1].children[0].text.to_i,
-        draw: stats[2].children[0].text.to_i,
-        lose: stats[3].children[0].text.to_i,
-        goals_diff: stats[4].children[0].text.to_i,
-        position: stats[5].children[0].text.to_i,
-        points: count_points(stats[1].children[0].text.to_i, stats[2].children[0].text.to_i)
+        games: parse_details(0),
+        win: parse_details(1),
+        draw: parse_details(2),
+        lose: parse_details(3),
+        goals_diff: parse_details(4),
+        position: parse_details(5),
+        points: count_points(parse_details(1), parse_details(2))
       }
     end
 
     private
+
+    def parse_details(element_number)
+      stats[element_number].children[0].text.to_i
+    end
 
     def count_points(win, draw)
       win * POINTS_FOR_WIN + draw

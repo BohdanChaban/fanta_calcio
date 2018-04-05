@@ -100,6 +100,10 @@ Style/Documentation:
     - 'config/application.rb'
     - 'db/migrate/20180328144917_devise_create_users.rb'
     - 'db/migrate/20180329075154_create_teams.rb'
+    - 'app/services/**/*'
+    - 'app/controllers/**/*'
+    - 'app/models/**/*'
+    - 'app/helpers/**/*'
 
 # Offense count: 1
 # Cop supports --auto-correct.

@@ -10,5 +10,5 @@
 clubs = YAML.load(IO.read Rails.root.join('spec', 'fixtures', 'clubs.yml'))
 
 clubs.each do |club|
-  Club.create(name: club) unless Club.exists?(name: club)
+  Club.create(name: club.downcase) unless Club.exists?(name: club)
 end

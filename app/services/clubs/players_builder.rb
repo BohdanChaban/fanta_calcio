@@ -11,13 +11,13 @@ module Clubs
     end
 
     def call
-      players_css.inject([]) do |memo, player|
+      players_css.each_with_object([]) do |player, memo|
         player_info = {
-          name: player.children[1].text,
-          position: player.children[2].text,
-          init_price: player.children[4].text,
-          actual_price: player.children[5].text,
-          avatar: avatar_url(player.children[1].text),
+          name: parse_text(player, 1),
+          position: parse_text(player, 2),
+          init_price: parse_text(player, 4),
+          actual_price: parse_text(player, 5),
+          avatar: avatar_url(parse_text(player, 1)),
           club: club
         }
 
@@ -32,13 +32,19 @@ module Clubs
       @players_css ||= html_page.css('table')[0].children[1].children
     end
 
+    def parse_text(player, element_number)
+      player.children[element_number].text
+    end
+
     def avatar_url(name)
       Api::Url.image(name)
     end
 
     def html_page
-      Nokogiri::HTML(RestClient.get(
-        Api::Url.team(club.name))
+      Nokogiri::HTML(
+        RestClient.get(
+          Api::Url.team(club.name)
+        )
       )
     end
   end
