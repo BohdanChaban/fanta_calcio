@@ -55,6 +55,8 @@ Layout/TrailingWhitespace:
 # Offense count: 1
 Metrics/AbcSize:
   Max: 17
+  Exclude:
+    - 'spec/**/*'
 
 # Offense count: 1
 # Configuration parameters: CountComments, ExcludedMethods.
