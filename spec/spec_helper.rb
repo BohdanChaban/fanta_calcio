@@ -1,6 +1,6 @@
 require 'simplecov'
 SimpleCov.start do
-  add_filter "rails_admin"
+  add_filter 'rails_admin'
 end
 
 RSpec.configure do |config|

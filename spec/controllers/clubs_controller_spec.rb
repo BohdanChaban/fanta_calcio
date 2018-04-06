@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe ClubsController, type: :controller do
   describe 'GET #index' do
     context 'with valid attributes' do
-      let(:club_names) { %w(milan inter roma) }
+      let(:club_names) { %w[milan inter roma] }
       let(:all_clubs) do
         club_names.each do |name|
           FactoryBot.create(:club, name: name)
