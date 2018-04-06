@@ -1,5 +1,7 @@
 require 'simplecov'
-SimpleCov.start
+SimpleCov.start do
+  add_filter "rails_admin"
+end
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

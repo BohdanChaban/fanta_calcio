@@ -27,6 +27,8 @@ RSpec.configure do |config|
 
   config.filter_rails_from_backtrace!
 
+  config.formatter = RSpec::Core::Formatters::DocumentationFormatter
+
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include ControllerHelpers, type: :controller
 end
