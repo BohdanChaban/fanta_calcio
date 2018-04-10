@@ -201,6 +201,10 @@ Style/SymbolArray:
 Metrics/LineLength:
   Max: 154
 
+Style/RegexpLiteral:
+  EnforcedStyle: slashes
+  AllowInnerSlashes: true
+
 AllCops:
   TargetRubyVersion: 2.4.1
   Exclude:

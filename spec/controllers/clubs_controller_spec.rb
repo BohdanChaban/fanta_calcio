@@ -48,4 +48,27 @@ RSpec.describe ClubsController, type: :controller do
       end
     end
   end
+
+  describe 'GET #fixtures' do
+    context 'with valid attributes' do
+      let(:club) { FactoryBot.create(:club_with_games) }
+
+      before do
+        get :fixtures, params: { id: club.id }
+      end
+
+      it 'response success' do
+        expect(response).to be_success
+        expect(response).to render_template('fixtures')
+      end
+
+      it 'return club' do
+        expect(assigns(:club)).to eq(club)
+      end
+
+      it 'return club games' do
+        expect(assigns(:games)).to eq(club.games)
+      end
+    end
+  end
 end
