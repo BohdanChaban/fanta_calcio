@@ -1,0 +1,28 @@
+<h1><%= @club.name %></h1>
+
+<ul class="nav nav-tabs nav-justified">
+  <li role="presentation"><a href="<%= club_url(@club) %>">Players</a></li>
+  <li role="presentation" class="active"><a href="#">Fixtures</a></li>
+</ul>
+
+<table class="table table-hover games">
+  <tr>
+    <th>Tour</th>
+    <th></th>
+    <th>Host</th>
+    <th></th>
+    <th>Guest</th>
+    <th></th>
+  </tr>
+
+  <% @games.each do |game| %>
+    <tr>
+      <td><%= game.tour.number %></td>
+      <td class="logo"><%= image_tag(game.host.logo) if game.host.logo %></td>
+      <td><%= game.host.name %></td>
+      <td>-</td>
+      <td><%= game.guest.name %></td>
+      <td class="logo"><%= image_tag(game.guest.logo) if game.guest.logo %></td>
+    </tr>
+  <% end %>
+</table>

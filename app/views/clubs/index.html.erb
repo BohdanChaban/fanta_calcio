@@ -6,12 +6,13 @@
       <th>Position</th>
       <th>Logo</th>
       <th>Name</th>
-      <th>Games</th>
+      <!--<th>Games</th>-->
       <th>W</th>
       <th>D</th>
       <th>L</th>
       <th>G</th>
       <th>Points</th>
+      <th></th>
     </tr>
 
     <% @clubs.each do |club| %>
@@ -19,13 +20,13 @@
         <td><%= club.position %></td>
         <td class="logo"><%= image_tag(club.logo) if club.logo %></td>
         <td><%= club.name %></td>
-        <td><%= club.games %></td>
+        <!--<td><%#= club.games %></td>-->
         <td><%= club.win %></td>
         <td><%= club.draw %></td>
         <td><%= club.lose %></td>
         <td><%= club.goals_diff %></td>
         <td><%= club.points %></td>
-        <!--<td><%#= link_to 'Show', article_path(article) %></td>-->
+        <td><%= link_to 'Show', club_path(club) %></td>
       </tr>
     <% end %>
   </table>

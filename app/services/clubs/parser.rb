@@ -14,7 +14,6 @@ module Clubs
 
     def call
       {
-        games: parse_details(0),
         win: parse_details(1),
         draw: parse_details(2),
         lose: parse_details(3),

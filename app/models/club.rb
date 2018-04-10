@@ -9,6 +9,10 @@ class Club < ApplicationRecord
   after_create :update_logo
   before_create :create_players
 
+  def games
+    Game.where('host_id = ? OR guest_id = ?', id, id)
+  end
+
   private
 
   def update_info

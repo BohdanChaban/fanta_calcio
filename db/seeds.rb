@@ -11,9 +11,11 @@ clubs = YAML.load(IO.read Rails.root.join('spec', 'fixtures', 'clubs.yml'))
 
 clubs.each do |club|
   Club.create(name: club.downcase) unless Club.exists?(name: club)
+  p "Club #{club} is successfully created"
 end
 
 tours_numbers = (1..38)
 tours_numbers.each do |number|
   Tours::Builder.call(number)
+  p "Tour ##{number} is successfully created"
 end

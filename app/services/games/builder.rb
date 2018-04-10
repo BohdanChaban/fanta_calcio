@@ -22,13 +22,13 @@ module Games
         tour: Tour.find_by(number: tour_number),
         host: Club.find_by(name: host_club_name),
         guest: Club.find_by(name: guest_club_name),
-        start_time: game_time
+        start_time: start_time
       }
     end
 
-    def game_time
+    def start_time
       start_time = game.children[1].children[1].children[1].text
-      DateTime.strptime(start_time, '%d/%m/%Y %H:%M')
+      Time.strptime(start_time, '%d/%m/%Y %H:%M')
     end
 
     def host_club_name
