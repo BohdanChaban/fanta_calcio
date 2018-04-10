@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Club, type: :model do
   it { is_expected.to have_many(:players) }
+  it { is_expected.to have_many(:host_games) }
+  it { is_expected.to have_many(:guest_games) }
 
   context 'with valid name provided' do
     let(:club) { described_class.new(name: 'milan') }

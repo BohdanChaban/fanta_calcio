@@ -24,4 +24,18 @@ RailsAdmin.config do |config|
       field :name
     end
   end
+
+  config.model 'Game' do
+    list do
+      field :id
+      field :tour do
+        pretty_value do
+          value.try(:number)
+        end
+      end
+      field :host
+      field :guest
+      field :start_time
+    end
+  end
 end
