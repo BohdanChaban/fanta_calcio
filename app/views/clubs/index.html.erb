@@ -4,7 +4,7 @@
   <table class="table table-hover">
     <tr>
       <th>Position</th>
-      <th>Logo</th>
+      <th class="mobile_hide">Logo</th>
       <th>Name</th>
       <!--<th>Games</th>-->
       <th>W</th>
@@ -18,7 +18,7 @@
     <% @clubs.each do |club| %>
       <tr>
         <td><%= club.position %></td>
-        <td class="logo"><%= image_tag(club.logo) if club.logo %></td>
+        <td class="logo mobile_hide"><%= image_tag(club.logo) if club.logo %></td>
         <td><%= club.name %></td>
         <!--<td><%#= club.games %></td>-->
         <td><%= club.win %></td>
@@ -26,7 +26,7 @@
         <td><%= club.lose %></td>
         <td><%= club.goals_diff %></td>
         <td><%= club.points %></td>
-        <td><%= link_to 'Show', club_path(club) %></td>
+        <td><%= link_to 'Show', club_path(club), class: 'btn btn-primary'  %></td>
       </tr>
     <% end %>
   </table>

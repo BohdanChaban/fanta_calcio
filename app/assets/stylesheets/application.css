@@ -30,3 +30,14 @@ body, html {
 .btn-group{
     padding: 20px 0;
 }
+
+@media screen and (max-width: 767px) {
+    #players_btn_row a, #nav_row a {
+        display: block;
+        width: 100%;
+        border-radius: 4px;
+    }
+    .mobile_hide {
+        display: none;
+    }
+}

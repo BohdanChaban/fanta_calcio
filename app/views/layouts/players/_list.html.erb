@@ -1,6 +1,6 @@
 <table class="table table-hover players">
   <tr>
-    <th></th>
+    <th class="mobile_hide"></th>
     <th>Name</th>
     <th>Position</th>
     <th>Initial price</th>
@@ -10,7 +10,7 @@
 
   <% @players.each do |player| %>
     <tr>
-      <td class="avatar"><%= image_tag(player.avatar) if player.avatar %></td>
+      <td class="avatar mobile_hide"><%= image_tag(player.avatar) if player.avatar %></td>
       <td><%= player.name.titleize %></td>
       <td><%= player.position %></td>
       <td><%= player.init_price %> $</td>
