@@ -1,5 +1,10 @@
-<% if user_signed_in? %>
-  <li>
-    <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
-  </li>
-<% end %>
+<div class="container">
+  <div class="btn-group btn-group-justified" role="group">
+    <%= link_to 'My Team', teams_path, class: 'btn btn-primary' %>
+    <%= link_to 'Squad', '', class: 'btn btn-primary' %>
+    <%= link_to 'Calendar', '', class: 'btn btn-primary nav-btn' %>
+    <%= link_to 'Players', players_path, class: 'btn btn-primary nav-btn' %>
+    <%= link_to 'Clubs', clubs_path, class: 'btn btn-primary' %>
+    <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-primary' if user_signed_in? %>
+  </div>
+</div>
