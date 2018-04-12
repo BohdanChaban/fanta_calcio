@@ -1,8 +1,10 @@
 class TeamsController < ApplicationController
   before_action :authenticate_user!
+  before_action :find_team, only: [:index]
 
   def index
     @team = current_user.team
+    @players = @team.players
   end
 
   def new

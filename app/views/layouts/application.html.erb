@@ -11,11 +11,19 @@
   </head>
 
   <body>
-    <nav>
+    <nav class="main-nav">
       <%= render 'layouts/navigation' %>
     </nav>
     <main class="main">
       <div class="container main">
+        <% if flash.present? %>
+          <% flash.each do |key, value| %>
+            <div class="<%= flash_class(key) %> alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <%= value %>
+            </div>
+          <% end %>
+        <% end %>
         <%= yield %>
       </div>
     </main>

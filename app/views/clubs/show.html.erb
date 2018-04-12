@@ -5,22 +5,4 @@
   <li role="presentation"><a href="<%= fixtures_club_url(@club) %>">Fixtures</a></li>
 </ul>
 
-<table class="table table-hover players">
-  <tr>
-    <th></th>
-    <th>Name</th>
-    <th>Position</th>
-    <th>Initial price</th>
-    <th>Actual price</th>
-  </tr>
-
-  <% @players.each do |player| %>
-    <tr>
-      <td class="avatar"><%= image_tag(player.avatar) if player.avatar %></td>
-      <td><%= player.name %></td>
-      <td><%= player.position %></td>
-      <td><%= player.init_price %> $</td>
-      <td><%= player.actual_price %> $</td>
-    </tr>
-  <% end %>
-</table>
+<%= render 'layouts/players/list' %>
