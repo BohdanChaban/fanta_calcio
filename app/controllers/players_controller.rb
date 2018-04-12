@@ -4,11 +4,11 @@ class PlayersController < ApplicationController
   before_action :find_player, only: [:update]
 
   def index
-    if params[:position]
-      @players = Player.where(position: params[:position]).order(actual_price: :desc)
-    else
-      @players = Player.all
-    end
+    @players = if params[:position]
+                 Player.where(position: params[:position]).order(actual_price: :desc)
+               else
+                 Player.all
+               end
   end
 
   def update
