@@ -1,0 +1,73 @@
+// Place all the styles related to the squads controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.formation_title, .form_block_input {
+  display: inline-block;
+}
+
+.main_form {
+  width: 100%;
+  height: 533px;
+  background: image_url('soccer-field.jpg') no-repeat center;
+  background-size: cover;
+}
+
+#reserve_form {
+  width: 100%;
+  height: 200px;
+  background: image_url('bench.jpg') no-repeat center;
+  background-size: 100% 200px;
+}
+
+#reserve_form .member-container {
+  padding-top: 58px;
+}
+
+.gk select {
+  display: block;
+  margin: 0 auto;
+}
+
+.member_input {
+  padding-top: 15px;
+}
+
+.gk, .df, .mf, .fw {
+  text-align: center;
+  height: 130px;
+}
+
+.df select, .mf select, .fw select {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.member-container select {
+  width: 90%;
+}
+
+#reserve_form .member-container {
+  width: 13.8%;
+}
+.member-container {
+  width: 18%;
+  display: inline-block;
+}
+
+.image-container {
+  background-size:cover;
+  background-repeat:no-repeat;
+  width:100px;
+  height:100px;
+  margin: 0 auto;
+}
+
+#squad_approve_btn {
+  padding: 25px 0;
+}
+
+#squad_approve_btn input {
+  width: 100%;
+  height: 40px;
+}

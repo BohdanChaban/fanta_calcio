@@ -1,7 +1,7 @@
 class PlayersController < ApplicationController
   before_action :authenticate_user!, only: [:update]
   before_action :find_team, only: [:update]
-  before_action :find_player, only: [:update]
+  before_action :find_player, only: [:update, :show]
 
   def index
     @players = if params[:position]
@@ -19,6 +19,13 @@ class PlayersController < ApplicationController
       flash[:error] = "Player #{@player.name} can not be added to #{@team.name} team"
     end
     redirect_back fallback_location: teams_path
+  end
+
+  def show
+    respond_to do |format|
+      format.html
+      format.json { render json: @player }
+    end
   end
 
   private

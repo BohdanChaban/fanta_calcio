@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180406105541) do
+ActiveRecord::Schema.define(version: 20180413094613) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,27 @@ ActiveRecord::Schema.define(version: 20180406105541) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "members", force: :cascade do |t|
+    t.decimal "total_score", precision: 3, scale: 1, default: "0.0", null: false
+    t.decimal "points", precision: 3, scale: 1, default: "0.0", null: false
+    t.integer "status", default: 0, null: false
+    t.integer "scored_goals", default: 0, null: false
+    t.integer "scored_penalties", default: 0, null: false
+    t.integer "conceded_goals", default: 0, null: false
+    t.integer "missed_penalties", default: 0, null: false
+    t.integer "assists", default: 0, null: false
+    t.integer "clean_sheets", default: 0, null: false
+    t.integer "yellow_cards", default: 0, null: false
+    t.integer "red_cards", default: 0, null: false
+    t.integer "own_goals", default: 0, null: false
+    t.bigint "player_id", null: false
+    t.bigint "squad_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["player_id"], name: "index_members_on_player_id"
+    t.index ["squad_id"], name: "index_members_on_squad_id"
+  end
+
   create_table "players", force: :cascade do |t|
     t.string "name"
     t.string "position"
@@ -49,6 +70,21 @@ ActiveRecord::Schema.define(version: 20180406105541) do
     t.datetime "updated_at", null: false
     t.index ["club_id"], name: "index_players_on_club_id"
     t.index ["team_id"], name: "index_players_on_team_id"
+  end
+
+  create_table "seasons", force: :cascade do |t|
+    t.string "years", default: ""
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "squads", force: :cascade do |t|
+    t.bigint "team_id", null: false
+    t.bigint "tour_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_squads_on_team_id"
+    t.index ["tour_id"], name: "index_squads_on_tour_id"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -64,6 +100,7 @@ ActiveRecord::Schema.define(version: 20180406105541) do
     t.date "base_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "season_id", null: false
   end
 
   create_table "users", force: :cascade do |t|

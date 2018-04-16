@@ -14,6 +14,9 @@ clubs.each do |club|
   p "Club #{club} is successfully created"
 end
 
+season = Season.create(years: '2017-18')
+p "Season #{season.years} is successfully created"
+
 tours_numbers = (1..38)
 tours_numbers.each do |number|
   Tours::Builder.call(number)

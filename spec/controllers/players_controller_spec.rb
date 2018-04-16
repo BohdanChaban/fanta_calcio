@@ -42,4 +42,6 @@ RSpec.describe PlayersController, type: :controller do
       end
     end
   end
+
+  # TODO: show action
 end

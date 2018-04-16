@@ -21,7 +21,8 @@ module Tours
     def create_tour
       Tour.create(
         number: number,
-        base_date: base_date
+        base_date: base_date,
+        season: season
       )
     end
 
@@ -43,14 +44,13 @@ module Tours
     def html_page
       Nokogiri::HTML(
         RestClient.get(
-          Api::Url.tour(season, number)
+          Api::Url.tour(season.years, number)
         )
       )
     end
 
     def season
-      # TODO: implement string generation
-      '2017-18'
+      @season ||= Season.last
     end
   end
 end
