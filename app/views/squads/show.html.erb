@@ -1,3 +1,91 @@
 <h1><%= @team.name %></h1>
 
-TODO: Show squad
+<table class="table table-hover">
+  <tr>
+    <th>Tour</th>
+    <th>Total score</th>
+    <th>Goals</th>
+    <th>Points</th>
+    <th></th>
+  </tr>
+
+  <tr>
+    <td><%= @squad.tour.number %></td>
+    <td><%= @squad.total_score %></td>
+    <td><%= @squad.goals %></td>
+    <td><%= @squad.points %></td>
+    <td><%= link_to 'Edit', edit_squad_path(@squad), class: 'btn btn-primary'  %></td>
+  </tr>
+</table>
+
+<table class="table table-hover">
+  <tr>
+    <th>Name</th>
+    <th title="Position">Pos</th>
+    <th title="Total score">TS</th>
+    <th title="Points">P</th>
+    <th title="Scored goals">SG</th>
+    <th title="Scored penalties">SP</th>
+    <th title="Conceded goals">CG</th>
+    <th title="Missed penalties">MP</th>
+    <th title="Assists">A</th>
+    <th title="Clean sheets">CS</th>
+    <th title="Yellow cards">YC</th>
+    <th title="Red cards">RC</th>
+    <th title="Own goals">OG</th>
+    <th></th>
+  </tr>
+
+  <% @main_members.each do |member| %>
+    <tr class="main_members">
+      <td><%= member.player.name %></td>
+      <td><%= member.player.position %></td>
+      <td><%= member.total_score %></td>
+      <td><%= member.points %></td>
+      <td><%= member.scored_goals %></td>
+      <td><%= member.scored_penalties %></td>
+      <td><%= member.conceded_goals %></td>
+      <td><%= member.missed_penalties %></td>
+      <td><%= member.assists %></td>
+      <td><%= member.clean_sheets %></td>
+      <td><%= member.yellow_cards %></td>
+      <td><%= member.red_cards %></td>
+      <td><%= member.own_goals %></td>
+      <td><%#= link_to 'Show', squad_path(squad), class: 'btn btn-primary'  %></td>
+    </tr>
+  <% end %>
+
+  <% @reserve_members.each do |member| %>
+    <tr class="reserve_members">
+      <td><%= member.player.name %></td>
+      <td><%= member.player.position %></td>
+      <td><%= member.total_score %></td>
+      <td><%= member.points %></td>
+      <td><%= member.scored_goals %></td>
+      <td><%= member.scored_penalties %></td>
+      <td><%= member.conceded_goals %></td>
+      <td><%= member.missed_penalties %></td>
+      <td><%= member.assists %></td>
+      <td><%= member.clean_sheets %></td>
+      <td><%= member.yellow_cards %></td>
+      <td><%= member.red_cards %></td>
+      <td><%= member.own_goals %></td>
+      <td><%#= link_to 'Show', squad_path(squad), class: 'btn btn-primary'  %></td>
+    </tr>
+  <% end %>
+</table>
+
+<div>
+  <div class="legend col-xs-3"><span class="bold">Pos</span> - Position</div>
+  <div class="legend col-xs-3"><span class="bold">TS</span> - Total score</div>
+  <div class="legend col-xs-3"><span class="bold">P</span> - Points</div>
+  <div class="legend col-xs-3"><span class="bold">SG</span> - Scored goals</div>
+  <div class="legend col-xs-3"><span class="bold">SP</span> - Scored penalties</div>
+  <div class="legend col-xs-3"><span class="bold">CG</span> - Conceded goals</div>
+  <div class="legend col-xs-3"><span class="bold">MP</span> - Missed penalties</div>
+  <div class="legend col-xs-3"><span class="bold">A</span> - Assists</div>
+  <div class="legend col-xs-3"><span class="bold">CS</span> - Clean sheets</div>
+  <div class="legend col-xs-3"><span class="bold">YC</span> - Yellow cards</div>
+  <div class="legend col-xs-3"><span class="bold">RC</span> - Red cards</div>
+  <div class="legend col-xs-3"><span class="bold">OG</span> - Own goals</div>
+</div>

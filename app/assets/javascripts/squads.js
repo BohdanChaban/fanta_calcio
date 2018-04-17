@@ -1,13 +1,16 @@
-$(document).ready(function(){
+$(document).on('turbolinks:load', function() {
     $('#squad_approve_btn input').attr('class', 'btn btn-primary');
 
     $('.main_form .member-container').hide();
 
     var formation, df, mf, fw;
-    $( ".form_block_input" ).click(function() {
+    $( '.form_block_input' ).click(function() {
         $('.main_form .member-container').hide();
 
-        formation = $("select#formation")[0].value;
+        $('.member-container select').val('');
+        $('.image-container').css('background-image', '');
+
+        formation = $('select#formation')[0].value;
         df = parseInt(formation.charAt(0));
         mf = parseInt(formation.charAt(1));
         fw = parseInt(formation.charAt(2));
@@ -29,19 +32,19 @@ $(document).ready(function(){
         }
     });
 
-    $(document).on('click',".member-container select", function () {
+    $(document).on('click','.member-container select', function () {
         var player_id = this.value;
         var image_container = $(this).parent().children('div');
 
         // $(".member-container select option[value="+player_id+"]").remove();
 
         $.ajax({
-            type: "GET",
-            dataType: "json",
-            url: "/players/"+player_id,
+            type: 'GET',
+            dataType: 'json',
+            url: '/players/'+player_id,
             success: function(data){
                 var player = data;
-                image_container.css("background-image", "url("+player.avatar+")");
+                image_container.css('background-image', 'url('+player.avatar+')');
             }
         });
     });

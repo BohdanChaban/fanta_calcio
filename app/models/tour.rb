@@ -8,4 +8,7 @@ class Tour < ApplicationRecord
   validates :number, presence: true, uniqueness: true, inclusion: { in: NUMBERS }
   validates :base_date, presence: true
   validates :season_id, presence: true
+
+  scope :future, -> { where("base_date > ?", Time.now) }
+  scope :next, -> { future.first }
 end

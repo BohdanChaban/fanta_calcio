@@ -1,0 +1,24 @@
+<div class="squads_header">
+  <h1 class="inline">Squads</h1>
+  <%= link_to 'New squad', new_squad_path, class: 'btn btn-primary right', id: 'new_squad_btn'  %>
+</div>
+
+<table class="table table-hover">
+  <tr>
+    <th>Tour</th>
+    <th>Total score</th>
+    <th>Goals</th>
+    <th>Points</th>
+    <th></th>
+  </tr>
+
+  <% @squads.each do |squad| %>
+    <tr>
+      <td><%= squad.tour.number %></td>
+      <td><%= squad.total_score %></td>
+      <td><%= squad.goals %></td>
+      <td><%= squad.points %></td>
+      <td><%= link_to 'Show', squad_path(squad), class: 'btn btn-primary'  %></td>
+    </tr>
+  <% end %>
+</table>

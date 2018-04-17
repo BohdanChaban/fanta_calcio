@@ -13,6 +13,7 @@
     <th></th>
     <th>Guest</th>
     <th></th>
+    <th>Date</th>
   </tr>
 
   <% @games.each do |game| %>
@@ -23,6 +24,7 @@
       <td>-</td>
       <td><%= game.guest.name %></td>
       <td class="logo"><%= image_tag(game.guest.logo) if game.guest.logo %></td>
+      <td><%= game.start_time.strftime("%e/%m/%Y %k:%M") %></td>
     </tr>
   <% end %>
 </table>

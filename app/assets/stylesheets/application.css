@@ -22,6 +22,18 @@ body, html {
     padding: 0;
 }
 
+.inline {
+    display: inline-block;
+}
+
+.right {
+    float: right;
+}
+
+.bold {
+    font-weight: bold;
+}
+
 .main {
     height: 100%;
     width: 100%;

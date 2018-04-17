@@ -10,7 +10,7 @@
 
   <% @players.each do |player| %>
     <tr>
-      <td class="avatar mobile_hide"><%= image_tag(player.avatar) if player.avatar %></td>
+      <td class="avatar mobile_hide"><%= image_tag(player.avatar) %></td>
       <td><%= player.name.titleize %></td>
       <td><%= player.position %></td>
       <td><%= player.init_price %> $</td>

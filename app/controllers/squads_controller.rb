@@ -1,51 +1,53 @@
 class SquadsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_team, only: [:new, :create, :show]
+  before_action :find_team, only: [:index, :new, :create, :show]
+  before_action :find_squad, only: [:edit, :update, :show]
 
   def index
     @squads = @team.squads
   end
 
   def show
-    @squad = Squad.find(params[:id])
+    @main_members = @squad.members.main.joins(:player)
+    @reserve_members = @squad.members.reserve.joins(:player)
   end
 
   def new
     @squad = Squad.new
     @players = @team.players
-    @gk = @team.players.gk
-    @df = @team.players.df
-    @mf = @team.players.mf
-    @fw = @team.players.fw
+    @gk = @players.gk
+    @df = @players.df
+    @mf = @players.mf
+    @fw = @players.fw
   end
 
   def create
-    @squad = Squad.new(team: @team, tour: Tour.last)
+    @squad = Squad.new(team: @team, tour: Tour.next)
 
     if @squad.save
       create_members
 
       redirect_to @squad, notice: 'Squad was successfully created.'
     else
-      render action: 'new'
+      redirect_to new_squad_path, warning: 'Squad is invalid'
     end
   end
 
-  def edit
-    @squad = Squad.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @squad = Squad.find(params[:id])
-
-    if @squad.update_attributes(params[:squad])
-      redirect_to @squad, notice: 'Squad was successfully updated.'
-    else
-      render action: 'edit'
-    end
+    # if @squad.update_attributes(params[:squad])
+    #   redirect_to @squad, notice: 'Squad was successfully updated.'
+    # else
+    #   render action: 'edit'
+    # end
   end
 
   private
+
+  def find_squad
+    @squad = Squad.find(params[:id])
+  end
 
   def members_params
     params.require(:members).permit(:id0,
@@ -59,10 +61,11 @@ class SquadsController < ApplicationController
   end
 
   # TODO: move to service
-  def create_member(id)
+  def create_member(id, status = 0)
     Member.create(
       squad: @squad,
-      player_id: id
+      player_id: id,
+      status: status
     )
   end
 
@@ -72,7 +75,7 @@ class SquadsController < ApplicationController
     end
 
     reserve_params.each do |_key, id|
-      create_member(id)
+      create_member(id, 1)
     end
   end
 end
