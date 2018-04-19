@@ -35,11 +35,11 @@ module Clubs
 
     def stats
       raise "Team #{name} not Found" if team_row.empty?
-      team_row[0].children
+      @stats ||= team_row[0].children
     end
 
     def team_row
-      html_page.css('div#statistiche div.sqcard div.row')
+      @team_row ||= html_page.css('div#statistiche div.sqcard div.row')
     end
 
     def html_page
