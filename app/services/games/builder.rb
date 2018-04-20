@@ -1,46 +1,37 @@
 module Games
-  class Builder
-    def self.call(game, tour_number)
-      new(game, tour_number).call
+  module Builder
+    HOST_CLUB_NODE_NO = 3
+    GUEST_CLUB_NODE_NO = 5
+
+    def start_time
+      start_time = game_info.children[1].children[1].children[1].text
+      Time.strptime(start_time, '%d/%m/%Y %H:%M')
     end
 
-    attr_accessor :game, :tour_number
-
-    def initialize(game, tour_number)
-      @game = game
-      @tour_number = tour_number
+    def result
+      host_result + '-' + guest_result
     end
 
-    def call
-      Game.create(game_params)
+    def host
+      Club.find_by(name: club_name(HOST_CLUB_NODE_NO))
+    end
+
+    def guest
+      Club.find_by(name: club_name(GUEST_CLUB_NODE_NO))
     end
 
     private
 
-    def game_params
-      {
-        tour: Tour.find_by(number: tour_number),
-        host: Club.find_by(name: host_club_name),
-        guest: Club.find_by(name: guest_club_name),
-        start_time: start_time
-      }
+    def host_result
+      game_info.children[HOST_CLUB_NODE_NO].children[3].text
     end
 
-    def start_time
-      start_time = game.children[1].children[1].children[1].text
-      Time.strptime(start_time, '%d/%m/%Y %H:%M')
-    end
-
-    def host_club_name
-      club_name(3)
-    end
-
-    def guest_club_name
-      club_name(5)
+    def guest_result
+      game_info.children[GUEST_CLUB_NODE_NO].children[1].text
     end
 
     def club_name(element)
-      name = game.children[element].children[7].text.downcase
+      name = game_info.children[element].children[7].text.downcase
 
       case name
       when 'chievoverona'

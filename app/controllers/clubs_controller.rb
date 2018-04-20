@@ -9,7 +9,7 @@ class ClubsController < ApplicationController
   end
 
   def fixtures
-    @games = @club.games.includes(:host, :guest, :tour)
+    @games = @club.games.includes(:host, :guest, :tour).order(id: :asc)
   end
 
   private

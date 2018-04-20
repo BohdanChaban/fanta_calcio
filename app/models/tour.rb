@@ -5,7 +5,7 @@ class Tour < ApplicationRecord
 
   NUMBERS = (1..38)
 
-  validates :number, presence: true, uniqueness: true, inclusion: { in: NUMBERS }
+  validates :number, presence: true, uniqueness: { scope: :season_id }, inclusion: { in: NUMBERS }
   validates :base_date, presence: true
   validates :season_id, presence: true
 

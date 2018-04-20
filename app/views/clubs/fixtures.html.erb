@@ -21,7 +21,7 @@
       <td><%= game.tour.number %></td>
       <td class="logo"><%= image_tag(game.host.logo) if game.host.logo %></td>
       <td><%= game.host.name %></td>
-      <td>-</td>
+      <td><%= game.result %></td>
       <td><%= game.guest.name %></td>
       <td class="logo"><%= image_tag(game.guest.logo) if game.guest.logo %></td>
       <td><%= game.start_time.strftime("%e/%m/%Y %k:%M") %></td>
