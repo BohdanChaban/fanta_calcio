@@ -62,7 +62,7 @@ module Squads
       average_point = points / defenders.count
 
       return 1 if average_point < 6
-      ((average_point - 5.5)/0.25).to_i
+      ((average_point - 5.5) / 0.25).to_i
     end
 
     def goals

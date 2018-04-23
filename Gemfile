@@ -44,3 +44,5 @@ gem 'devise-bootstrap-views'
 gem 'rails_admin', '~> 1.3'
 gem 'rest-client'
 gem 'simple_form'
+
+gem 'rubocop', require: false
