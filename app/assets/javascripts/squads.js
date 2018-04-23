@@ -23,7 +23,6 @@ $(document).on('turbolinks:load', function() {
 
         for (var i = 0; i < mf; i++) {
             $($('.mf .member-container')[i]).show();
-
         }
 
         for (var i = 0; i < fw; i++) {

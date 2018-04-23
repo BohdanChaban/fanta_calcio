@@ -1,3 +1,9 @@
+[![Build Status](https://travis-ci.org/BohdanChaban/fanta_calcio.svg?branch=master)](https://travis-ci.org/BohdanChaban/fanta_calcio)
+
+[![Coverage Status](https://coveralls.io/repos/github/BohdanChaban/fanta_calcio/badge.svg?branch=master)](https://coveralls.io/github/BohdanChaban/fanta_calcio?branch=master)
+
+[![Code Climate](https://codeclimate.com/github/codeclimate/codeclimate/badges/gpa.svg)](https://codeclimate.com/github/BohdanChaban/fanta_calcio)
+
 # FANTA CALCIO
 
 Web Rails application for Fantasy Football based on Seria A competition.

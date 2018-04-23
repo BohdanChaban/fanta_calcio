@@ -1,4 +1,15 @@
 require 'simplecov'
+require 'simplecov-console'
+require 'coveralls'
+
+Coveralls.wear!
+
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
+  [
+    SimpleCov::Formatter::Console,
+    SimpleCov::Formatter::HTMLFormatter
+  ]
+)
 SimpleCov.start do
   add_filter 'rails_admin'
 end
