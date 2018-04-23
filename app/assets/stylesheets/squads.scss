@@ -75,3 +75,24 @@
 .reserve_members {
   background: #dbe6ff;
 }
+
+.played_name {
+  font-weight: 500;
+}
+
+.main_members .replaced_name:after {
+  background: asset-url('out.png') no-repeat center;
+}
+
+.reserve_members .played_name:after {
+  background: asset-url('in.png') no-repeat center;
+}
+
+.main_members .replaced_name:after, .reserve_members .played_name:after {
+  content: '';
+  width: 15px;
+  height: 15px;
+  background-size: contain;
+  display: inline-block;
+  margin-left: 10px;
+}

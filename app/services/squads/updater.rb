@@ -12,11 +12,11 @@ module Squads
     end
 
     def call
-      # update_members
+      update_members
 
       set_played_members
 
-      # update_squad
+      update_squad
     end
 
     private
@@ -30,6 +30,7 @@ module Squads
     def set_played_members
       members.main_with_points.update_all(appearance: 1)
       members.missed.each do |member|
+        member.update(appearance: 2)
         members.alternate(member.position).first.update(appearance: 1)
       end
     end
@@ -47,18 +48,21 @@ module Squads
 
     def members_points
       points = 0
-      members.main.each do |member|
+      members.played.each do |member|
         points += member.total_score
       end
       points
     end
 
     def defence_bonus
-      # related to average score of all squad defenders
-      # bonus =
-      # return 0 if bonus < 6
-      # ((bonus - 6) / 0.25).to_i
-      2
+      points = 0
+      defenders = members.played_defenders.each do |member|
+        points += member.points
+      end
+      average_point = points / defenders.count
+
+      return 1 if average_point < 6
+      ((average_point - 5.5)/0.25).to_i
     end
 
     def goals

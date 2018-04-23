@@ -37,7 +37,7 @@
 
   <% @main_members.each do |member| %>
     <tr class="main_members">
-      <td style="font-weight: <%= member.played? ? '800' : '400' %>"><%= member.name %></td>
+      <td class="<%= member.played? ? 'played_name' : 'replaced_name' %>"><%= member.name %></td>
       <td><%= member.position %></td>
       <td><%= member.total_score %></td>
       <td><%= member.points %></td>
@@ -55,7 +55,7 @@
 
   <% @reserve_members.each do |member| %>
     <tr class="reserve_members">
-      <td style="font-weight: <%= member.played? ? '500' : '300' %>"><%= member.name %></td>
+      <td class="<%= 'played_name' if member.played? %>"><%= member.name %></td>
       <td><%= member.position %></td>
       <td><%= member.total_score %></td>
       <td><%= member.points %></td>

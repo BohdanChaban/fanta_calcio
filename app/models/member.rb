@@ -12,7 +12,8 @@ class Member < ApplicationRecord
 
   enum appearance: {
     choosed: 0,
-    played: 1
+    played: 1,
+    replaced: 2
   }
 
   validates :squad_id, presence: true
@@ -32,9 +33,9 @@ class Member < ApplicationRecord
   validates :own_goals, presence: true
 
   scope :main_with_points, -> { main.where('points > 0') }
-  scope :missed, -> { main.where(points: 0) }
-  scope :alternate, -> (position) { joins(:player).reserve.where(players: {position: position}, appearance: 0) }
-
+  scope :missed, -> { main.choosed.where(points: 0) }
+  scope :alternate, ->(position) { joins(:player).reserve.where(players: { position: position }, appearance: 0) }
+  scope :played_defenders, -> { joins(:player).played.where(players: { position: 'D' }) }
 
   def clean_sheet?
     %w[P D].include?(position) && club_clean_sheet

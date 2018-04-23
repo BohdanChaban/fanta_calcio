@@ -67,7 +67,7 @@ RSpec.describe ClubsController, type: :controller do
       end
 
       it 'return club games' do
-        expect(assigns(:games)).to eq(club.games)
+        expect(assigns(:games).ids).to eq(club.games.ids)
       end
     end
   end

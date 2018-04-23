@@ -22,7 +22,7 @@ class SquadsController < ApplicationController
   end
 
   def create
-    @squad = Squad.new(team: @team, tour: Tour.find(34)) #next)
+    @squad = Squad.new(team: @team, tour: Tour.next)
 
     if @squad.save
       create_members
