@@ -1,0 +1,27 @@
+<table class="table table-hover players">
+  <tr>
+    <th class="mobile_hide"></th>
+    <th>Name</th>
+    <th>Position</th>
+    <th>Initial price</th>
+    <th>Actual price</th>
+    <th>Team</th>
+  </tr>
+
+  <% @players.each do |player| %>
+    <tr>
+      <td class="avatar mobile_hide"><%= image_tag(player.avatar) %></td>
+      <td><%= player.name.titleize %></td>
+      <td><%= player.position %></td>
+      <td><%= player.init_price %> $</td>
+      <td><%= player.actual_price %> $</td>
+      <td>
+        <% if player.team %>
+          <%= player.team.name %>
+        <% else %>
+          <%= button_to 'Buy', player, method: :patch, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %></td>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>

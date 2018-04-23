@@ -1,0 +1,10 @@
+<h1>Seria A</h1>
+
+<div class="btn-group btn-group-justified" id="players_btn_row" role="group">
+  <%= link_to 'All players', players_path, class: 'btn btn-primary' %>
+  <%= link_to 'Portieri / Goalkeepers', players_path(position: 'P'), class: 'btn btn-primary' %>
+  <%= link_to 'Difensori / Defenders', players_path(position: 'D'), class: 'btn btn-primary nav-btn' %>
+  <%= link_to 'Centrocampisti / Midfielders', players_path(position: 'C'), class: 'btn btn-primary nav-btn' %>
+  <%= link_to 'Attaccanti / Forwards', players_path(position: 'A'), class: 'btn btn-primary' %>
+</div>
+<%= render 'layouts/players/list' %>

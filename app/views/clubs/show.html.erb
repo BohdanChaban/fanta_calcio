@@ -1,0 +1,8 @@
+<h1><%= @club.name %></h1>
+
+<ul class="nav nav-tabs nav-justified">
+  <li role="presentation" class="active"><a href="#">Players</a></li>
+  <li role="presentation"><a href="<%= fixtures_club_url(@club) %>">Fixtures</a></li>
+</ul>
+
+<%= render 'layouts/players/list' %>
