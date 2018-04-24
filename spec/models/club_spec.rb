@@ -53,7 +53,7 @@ RSpec.describe Club, type: :model do
   end
 
   context 'with duplicated name provided' do
-    let(:club1) { described_class.create(name: 'milan') }
+    let(:club1) { Club.first }
     let(:club2) { described_class.new(name: club1.name) }
 
     it 'club is invalid' do

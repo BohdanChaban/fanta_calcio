@@ -10,7 +10,7 @@ module Games
 
     def initialize(game_info, tour)
       @game_info = game_info
-      @tour_number = tour
+      @tour = tour
     end
 
     def call
@@ -18,6 +18,7 @@ module Games
         tour: tour,
         host: host,
         guest: guest,
+        result: result,
         start_time: start_time
       )
     end

@@ -4,12 +4,7 @@ RSpec.describe ClubsController, type: :controller do
   describe 'GET #index' do
     context 'with valid attributes' do
       let(:club_names) { %w[milan inter roma] }
-      let(:all_clubs) do
-        club_names.each do |name|
-          FactoryBot.create(:club, name: name)
-        end
-        Club.all.order(:position)
-      end
+      let(:all_clubs) { Club.all.order(:position) }
 
       before do
         get :index
@@ -28,7 +23,7 @@ RSpec.describe ClubsController, type: :controller do
 
   describe 'GET #show' do
     context 'with valid attributes' do
-      let(:club) { FactoryBot.create(:club) }
+      let(:club) { Club.first }
 
       before do
         get :show, params: { id: club.id }
@@ -44,14 +39,14 @@ RSpec.describe ClubsController, type: :controller do
       end
 
       it 'return club players' do
-        expect(assigns(:players)).to eq(club.players)
+        expect(assigns(:players)).to eq(club.players.order(id: :asc))
       end
     end
   end
 
   describe 'GET #fixtures' do
     context 'with valid attributes' do
-      let(:club) { FactoryBot.create(:club_with_games) }
+      let(:club) { Club.first }
 
       before do
         get :fixtures, params: { id: club.id }

@@ -6,8 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
-clubs = YAML.load(IO.read Rails.root.join('spec', 'fixtures', 'clubs.yml'))
+case Rails.env
+when 'test'
+  tours_numbers = (1..2)
+  clubs = YAML.load(IO.read Rails.root.join('spec', 'fixtures', 'clubs.yml'))[0..9]
+else
+  tours_numbers = (1..38)
+  clubs = YAML.load(IO.read Rails.root.join('spec', 'fixtures', 'clubs.yml'))
+end
 
 clubs.each do |club|
   Club.create(name: club.downcase) unless Club.exists?(name: club)
@@ -17,8 +23,7 @@ end
 season = Season.create(years: '2017-18')
 p "Season #{season.years} is successfully created"
 
-tours_numbers = (1..38)
 tours_numbers.each do |number|
-  Tours::Builder.call(number)
+  Tours::Creator.call(number)
   p "Tour ##{number} is successfully created"
 end

@@ -1,6 +1,7 @@
 require 'simplecov'
 require 'simplecov-console'
 require 'coveralls'
+require 'database_cleaner'
 
 Coveralls.wear!('rails')
 
@@ -16,6 +17,21 @@ SimpleCov.start do
 end
 
 RSpec.configure do |config|
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
+
+  config.before(:suite) do
+    Rails.application.load_seed # loading seeds
+  end
+
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
