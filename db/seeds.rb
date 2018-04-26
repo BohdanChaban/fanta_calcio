@@ -6,14 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-case Rails.env
-when 'test'
-  tours_numbers = (1..2)
-  clubs = YAML.load(IO.read Rails.root.join('spec', 'fixtures', 'clubs.yml'))[0..9]
-else
-  tours_numbers = (1..38)
-  clubs = YAML.load(IO.read Rails.root.join('spec', 'fixtures', 'clubs.yml'))
-end
+tours_numbers = (1..2)
+clubs = YAML.load(IO.read Rails.root.join('spec', 'fixtures', 'clubs.yml'))
 
 clubs.each do |club|
   Club.create(name: club.downcase) unless Club.exists?(name: club)

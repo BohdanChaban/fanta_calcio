@@ -6,7 +6,22 @@ RSpec.describe Club, type: :model do
   it { is_expected.to have_many(:guest_games) }
 
   context 'with valid name provided' do
-    let(:club) { described_class.new(name: 'milan') }
+    let(:club) { described_class.new(name: 'parma') }
+    let(:club_params) {
+      {
+        win: 11,
+        draw: 12,
+        lose: 13,
+        goals_diff: 6,
+        position: 21,
+        points: 45
+      }
+    }
+
+    before do
+      allow(Clubs::Parser).to receive(:call).with(club.name).and_return(club_params)
+      allow(Api::Url).to receive(:club_image).with(club.name).and_return('club_logo_url')
+    end
 
     it 'club is valid' do
       expect(club.valid?).to be true
@@ -29,7 +44,7 @@ RSpec.describe Club, type: :model do
   end
 
   context 'callbacks' do
-    let(:club) { described_class.create(name: 'milan') }
+    let(:club) { Club.first }
 
     it 'updates club logo' do
       expect(club.logo).to_not eq(nil)
