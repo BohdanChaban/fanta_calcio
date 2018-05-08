@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 tours_numbers = (1..2)
+# tours_numbers = (1..38)
 clubs = YAML.load(IO.read Rails.root.join('spec', 'fixtures', 'clubs.yml'))
 
 clubs.each do |club|

@@ -2,6 +2,11 @@ class ClubsController < ApplicationController
   before_action :find_club, only: [:show, :fixtures]
   def index
     @clubs = Club.all.order(:position)
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @clubs }
+    end
   end
 
   def show

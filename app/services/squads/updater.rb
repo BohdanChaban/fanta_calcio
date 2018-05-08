@@ -31,7 +31,7 @@ module Squads
       members.main_with_points.update_all(appearance: 1)
       members.missed.each do |member|
         member.update(appearance: 2)
-        members.alternate(member.position).first.update(appearance: 1)
+        members.alternate(member.position).first&.update(appearance: 1)
       end
     end
 

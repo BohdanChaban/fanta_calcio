@@ -7,7 +7,7 @@ RSpec.describe Club, type: :model do
 
   context 'with valid name provided' do
     let(:club) { described_class.new(name: 'parma') }
-    let(:club_params) {
+    let(:club_params) do
       {
         win: 11,
         draw: 12,
@@ -16,7 +16,7 @@ RSpec.describe Club, type: :model do
         position: 21,
         points: 45
       }
-    }
+    end
 
     before do
       allow(Clubs::Parser).to receive(:call).with(club.name).and_return(club_params)

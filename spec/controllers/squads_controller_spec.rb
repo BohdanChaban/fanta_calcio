@@ -132,7 +132,7 @@ RSpec.describe SquadsController, type: :controller do
   describe 'POST #create' do
     let(:user) { FactoryBot.create(:user_with_team_and_players) }
     let(:players) { user.team.players }
-    let(:members_ids_hash) {
+    let(:members_ids_hash) do
       {
         id0: players.gk.first,
         id10: players.df[0],
@@ -146,8 +146,8 @@ RSpec.describe SquadsController, type: :controller do
         id31: players.fw[1],
         id32: players.fw[2]
       }
-    }
-    let(:reserve_ids_hash) {
+    end
+    let(:reserve_ids_hash) do
       {
         id0: players.gk[1],
         id1: players.df[4],
@@ -157,7 +157,7 @@ RSpec.describe SquadsController, type: :controller do
         id5: players.fw[3],
         id6: players.fw[4]
       }
-    }
+    end
 
     context 'with authorized user' do
       before do

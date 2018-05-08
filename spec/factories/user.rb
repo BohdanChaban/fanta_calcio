@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :user do
-    @pass = "password"
+    @pass = 'password'
 
     email 'calcio@example.com'
     first_name 'Calcio'
