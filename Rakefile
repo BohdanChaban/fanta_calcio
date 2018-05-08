@@ -7,12 +7,17 @@ Rails.application.load_tasks
 
 require 'rubygems'
 require 'rake'
-require 'rspec/core/rake_task'
 require 'coveralls/rake/task'
 
-desc 'Run RSpec'
-RSpec::Core::RakeTask.new do |t|
-  t.verbose = false
+
+begin
+  require 'rspec/core/rake_task'
+  desc 'Run all examples'
+  RSpec::Core::RakeTask.new(:spec) do |t|
+    t.rspec_opts = %w[--color]
+    t.pattern = 'spec/**/*_spec.rb'
+  end
+rescue LoadError
 end
 
 task default: :spec
