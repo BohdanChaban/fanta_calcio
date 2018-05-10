@@ -9,6 +9,11 @@ class PlayersController < ApplicationController
                else
                  Player.all
                end
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @players }
+    end
   end
 
   def update

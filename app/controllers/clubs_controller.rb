@@ -11,10 +11,20 @@ class ClubsController < ApplicationController
 
   def show
     @players = @club.players.order(id: :asc)
+
+    respond_to do |format|
+      format.html
+      format.json { render json: { club: @club, players: @players } }
+    end
   end
 
   def fixtures
     @games = @club.games.includes(:host, :guest, :tour).order(id: :asc)
+
+    respond_to do |format|
+      format.html
+      format.json { render json: { club: @club, fixtures: @games } }
+    end
   end
 
   private
