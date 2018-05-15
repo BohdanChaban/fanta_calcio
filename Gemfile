@@ -47,3 +47,5 @@ gem 'rest-client'
 gem 'simple_form'
 
 gem 'rubocop', require: false
+
+gem 'active_model_serializers', '~> 0.10.0'
