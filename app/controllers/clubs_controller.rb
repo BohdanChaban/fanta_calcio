@@ -23,7 +23,11 @@ class ClubsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: @club.games, each_serializer: GamesSerializer, adapter: :json }
+      format.json do
+        render json: @club.games.order(id: :asc),
+               each_serializer: GamesSerializer,
+               adapter: :json
+      end
     end
   end
 
