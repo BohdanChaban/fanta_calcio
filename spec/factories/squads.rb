@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :squad do
-    tour Tour.first
+    tour 'Tour.first'
 
     factory :squad_with_members do
       after(:create) do |squad|
