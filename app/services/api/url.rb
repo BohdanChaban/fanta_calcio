@@ -22,7 +22,7 @@ module Api
     end
 
     def self.results
-      "#{RESULTS_HOST}/voti-fantacalcio.php"
+      "#{RESULTS_HOST}/voti-gazzetta-sport-fantacalcio-seriea.php"
     end
   end
 end
