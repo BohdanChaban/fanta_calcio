@@ -2,14 +2,14 @@ module Clubs
   class Parser
     POINTS_FOR_WIN = 3
 
-    def self.call(name)
-      new(name).call
+    def self.call(page)
+      new(page).call
     end
 
-    attr_accessor :name
+    attr_accessor :page
 
-    def initialize(name)
-      @name = name
+    def initialize(page)
+      @page = page
     end
 
     def call
@@ -34,18 +34,12 @@ module Clubs
     end
 
     def stats
-      raise "Team #{name} not Found" if team_row.empty?
+      raise "Team is not Found" if team_row.empty?
       @stats ||= team_row[0].children
     end
 
     def team_row
-      @team_row ||= html_page.css('div#statistiche div.sqcard div.row')
-    end
-
-    def html_page
-      Nokogiri::HTML(
-        RestClient.get(Api::Url.team(name))
-      )
+      @team_row ||= page.css('div#statistiche div.sqcard div.row')
     end
   end
 end

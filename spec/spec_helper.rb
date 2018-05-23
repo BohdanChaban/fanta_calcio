@@ -28,10 +28,6 @@ RSpec.configure do |config|
     end
   end
 
-  config.before(:suite) do
-    Rails.application.load_seed # loading seeds
-  end
-
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end

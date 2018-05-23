@@ -16,7 +16,7 @@ class Club < ApplicationRecord
   private
 
   def update_info
-    params = Clubs::Parser.call(name)
+    params = Clubs::Parser.call(html_page)
 
     update(params)
   end
@@ -26,6 +26,12 @@ class Club < ApplicationRecord
   end
 
   def create_players
-    self.players = Clubs::PlayersBuilder.call(self)
+    self.players = Clubs::PlayersBuilder.call(self, html_page)
+  end
+
+  def html_page
+    Nokogiri::HTML(
+      RestClient.get(Api::Url.team(name))
+    )
   end
 end

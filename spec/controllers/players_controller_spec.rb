@@ -1,8 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe PlayersController, type: :controller do
+  let(:club) { FactoryBot.create(:club) }
+
   describe 'GET #index' do
-    let(:players) { Player.all }
+    let(:players) { club.players }
 
     context 'without position params' do
       before do
@@ -21,7 +23,7 @@ RSpec.describe PlayersController, type: :controller do
 
     context 'with position params' do
       let(:position) { 'P' }
-      let(:gk_players) { Player.where(position: position).order(actual_price: :desc) }
+      let(:gk_players) { players.where(position: position).order(actual_price: :desc) }
 
       before do
         get :index, params: { position: position }
@@ -40,7 +42,7 @@ RSpec.describe PlayersController, type: :controller do
 
   describe 'PATCH #update' do
     let(:user) { FactoryBot.create(:user_with_team) }
-    let(:player) { Player.last }
+    let(:player) { club.players.last }
 
     context 'with valid attributes' do
       before do
@@ -77,7 +79,7 @@ RSpec.describe PlayersController, type: :controller do
 
   describe 'GET #show' do
     context 'with valid attributes' do
-      let(:player) { Player.first }
+      let(:player) { club.players.first }
 
       before do
         get :show, params: { id: player.id }, format: :json

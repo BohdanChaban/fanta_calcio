@@ -1,13 +1,14 @@
 module Clubs
   class PlayersBuilder
-    def self.call(club)
-      new(club).call
+    def self.call(club, page)
+      new(club, page).call
     end
 
-    attr_accessor :club
+    attr_accessor :club, :page
 
-    def initialize(club)
+    def initialize(club, page)
       @club = club
+      @page = page
     end
 
     def call
@@ -29,7 +30,7 @@ module Clubs
     private
 
     def players_css
-      @players_css ||= html_page.css('table')[0].children[1].children
+      @players_css ||= page.css('table')[0].children[1].children
     end
 
     def parse_text(player, element_number)
@@ -38,14 +39,6 @@ module Clubs
 
     def avatar_url(name)
       Api::Url.image(name)
-    end
-
-    def html_page
-      Nokogiri::HTML(
-        RestClient.get(
-          Api::Url.team(club.name)
-        )
-      )
     end
   end
 end

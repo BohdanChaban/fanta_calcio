@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe ClubsController, type: :controller do
   describe 'GET #index' do
     context 'with valid attributes' do
-      let(:club_names) { %w[milan inter roma] }
       let(:all_clubs) { Club.all.order(:position) }
 
       before do
@@ -23,7 +22,7 @@ RSpec.describe ClubsController, type: :controller do
 
   describe 'GET #show' do
     context 'with valid attributes' do
-      let(:club) { Club.first }
+      let(:club) { FactoryBot.create(:club) }
 
       before do
         get :show, params: { id: club.id }
@@ -46,7 +45,7 @@ RSpec.describe ClubsController, type: :controller do
 
   describe 'GET #fixtures' do
     context 'with valid attributes' do
-      let(:club) { Club.first }
+      let(:club) { FactoryBot.create(:club) }
 
       before do
         get :fixtures, params: { id: club.id }
